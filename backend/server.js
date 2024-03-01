@@ -16,7 +16,7 @@ const server = new ApolloServer({
 
 server.applyMiddleware({ app });
 
-mongoose.connect('mongodb://localhost:27017', {
+mongoose.connect('mongodb://localhost:27017/odyssey_link', {
   useNewUrlParser: true,
   useUnifiedTopology: true,
   // Other options as needed...
