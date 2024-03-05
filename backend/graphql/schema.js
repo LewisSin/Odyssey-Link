@@ -1,15 +1,38 @@
 const { gql } = require('apollo-server-express');
 
 const typeDefs = gql`
+  type Post {
+    id: ID!
+    title: String!
+    content: String!
+    author: User!
+    createdAt: String!
+  }
+  extend type Query {
+    posts: [Post]
+    post(id: ID!): Post
+  }
+
+  extend type Mutation {
+    addPost(title: String!, content: String!): Post
+  }
+
+  # Assuming you already have a User type
+  type User {
+    id: ID!
+    username: String!
+    posts: [Post]
+  }
+
   type Query {
-    # Define your query types here
+    getPosts: [Post]
+    getPost(id: ID!): Post
   }
 
   type Mutation {
-    # Define your mutation types here
+    createPost(title: String!, content: String!): Post
+    deletePost(id: ID!): String
   }
-
-  # Define your custom types here
 `;
 
 module.exports = { typeDefs };
