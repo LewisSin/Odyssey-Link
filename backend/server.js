@@ -4,29 +4,26 @@ const mongoose = require('mongoose');
 const { typeDefs } = require('./graphql/schema');
 const { resolvers } = require('./graphql/resolvers');
 
-const app = express();
-const PORT = process.env.PORT || 5000;
+async function startServer() {
+  const app = express();
+  const PORT = process.env.PORT || 5000;
 
-app.use(express.json());
+  app.use(express.json());
 
-const server = new ApolloServer({
-  typeDefs,
-  resolvers,
-});
-
-server.applyMiddleware({ app });
-
-mongoose.connect('mongodb://localhost:27017/odyssey_link', {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-})
-  .then(() => {
-    console.log('Connected to MongoDB database');
-    app.listen(PORT, () => {
-      console.log(`Server running on port ${PORT}`);
-      console.log(`GraphQL endpoint: http://localhost:${PORT}${server.graphqlPath}`);
-    });
-  })
-  .catch((error) => {
-    console.error('Error connecting to MongoDB:', error);
+  const server = new ApolloServer({
+    typeDefs,
+    resolvers,
   });
+
+  await server.start();
+  server.applyMiddleware({ app });
+
+  app.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`);
+    console.log(`GraphQL endpoint: http://localhost:${PORT}${server.graphqlPath}`);
+  });
+}
+
+startServer().catch((error) => {
+  console.error('Error launching the server:', error);
+});

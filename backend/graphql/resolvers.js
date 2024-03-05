@@ -1,5 +1,5 @@
-const Post = require('./models/Post'); // Adjust path as necessary
-const User = require('./models/user.model'); // Ensure path is correct
+const Post = require('./schema'); // Adjust path as necessary
+const User = require('../Models/user.model'); // Ensure path is correct
 
 const resolvers = {
   Query: {

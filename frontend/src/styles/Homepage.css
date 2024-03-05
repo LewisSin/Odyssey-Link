@@ -1,0 +1,32 @@
+.landing-page {
+    text-align: center;
+  }
+  
+  .landing-header nav {
+    display: flex;
+    justify-content: flex-end;
+    padding: 1rem;
+  }
+  
+  .hero {
+    padding: 2rem;
+    background-color: #f0f0f0;
+  }
+  
+  .features {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    padding: 2rem;
+  }
+  
+  .feature {
+    max-width: 200px;
+  }
+  
+  .landing-footer {
+    margin-top: 2rem;
+    padding: 1rem;
+    background-color: #d0d0d0;
+  }
+  
