@@ -1,5 +1,6 @@
 const Post = require('./schema'); // Adjust path as necessary
 const User = require('../Models/user.model'); // Ensure path is correct
+const signToken = require('../middlewares/auth.middleware')
 
 const resolvers = {
   Query: {
@@ -7,6 +8,11 @@ const resolvers = {
     getPost: async (_, { id }) => await Post.findById(id).populate('author'),
   },
   Mutation: {
+    register: async (_, {email, password}, {req}) => {
+     const User = await User.create({email, password})
+     const token = signToken(pathUser)
+     return {token, user}
+    }
     createPost: async (_, { title, content }, { req }) => {
       if (!req.user) throw new Error('You must be logged in to create a post');
       

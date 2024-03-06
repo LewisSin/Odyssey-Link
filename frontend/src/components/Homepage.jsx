@@ -1,14 +1,13 @@
-// src/components/LandingPage.jsx
+
 import React from 'react';
 import { Link } from 'react-router-dom';
-import '../styles'; 
 
 const LandingPage = () => {
   return (
     <div className="landing-page">
       <header className="landing-header">
         <nav>
-          <Link to="/signup">Sign Up</Link>
+          <Link to="/register">Register</Link>
           <Link to="/login">Log In</Link>
         </nav>
       </header>
